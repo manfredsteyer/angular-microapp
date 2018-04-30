@@ -132,6 +132,136 @@
           }
         }
       }
+    },
+    "client-a": {
+      "root": "projects/client-a/",
+      "projectType": "application",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/client-a",
+            "index": "projects/client-a/src/index.html",
+            "main": "projects/client-a/src/main.ts",
+            "polyfills": "projects/client-a/src/polyfills.ts",
+            "tsConfig": "projects/client-a/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "projects/client-a/src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/client-a/src/assets",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "projects/client-a/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/client-a/src/environments/environment.ts",
+                  "with": "projects/client-a/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "client-a:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "client-a:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "client-a:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/client-a/src/test.ts",
+            "polyfills": "projects/client-a/src/polyfills.ts",
+            "tsConfig": "projects/client-a/tsconfig.spec.json",
+            "karmaConfig": "projects/client-a/karma.conf.js",
+            "styles": [
+              {
+                "input": "projects/client-a/styles.css"
+              }
+            ],
+            "scripts": [],
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "projects/client-a/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/client-a/src/assets",
+                "output": "/assets"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/client-a/tsconfig.app.json",
+              "projects/client-a/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "client-a-e2e": {
+      "root": "projects/client-a-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/client-a-e2e/protractor.conf.js",
+            "devServerTarget": "client-a:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/client-a-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "schematics": {
