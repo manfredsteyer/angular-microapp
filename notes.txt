@@ -1,0 +1,10 @@
+- Polyfills
+- Schema
+- commonJS
+- build task und "mono repo" for demo
+- selector
+
+
+- passing in object instead of strings?
+- bundling
+- 

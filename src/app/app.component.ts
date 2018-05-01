@@ -1,5 +1,7 @@
 import { element } from 'protractor';
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
+  clientA: HTMLElement;
+
   config = {
     "client-a": {
       loaded: false,
@@ -30,9 +34,20 @@ export class AppComponent {
     script.onerror = () => console.error(`error loading ${configItem.path}`);
     document.body.appendChild(script);
     
-    const element = document.createElement(configItem.element);
+    const element: HTMLElement = document.createElement(configItem.element);
+    element.addEventListener('message', msg => this.handleMessage(msg));
     document.body.appendChild(element);
 
+    this.clientA = element;
+
+  }
+
+  handleMessage(msg): void {
+    console.debug('shell received message: ', msg.detail);
+  }
+
+  sendState(): void {
+    this.clientA.setAttribute('state', 'message from shell');
   }
 
 }

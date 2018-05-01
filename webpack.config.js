@@ -11,7 +11,7 @@ module.exports = {
     rules: [
       { test: /\.ts$/, loaders: ['@ngtools/webpack'] },
       { test: /\.html$/, loader: 'html-loader',  options: { minimize: true } },
-      {
+      /*{
         test: /\.css$/,
         "use": [
           "style-loader",
@@ -23,7 +23,7 @@ module.exports = {
             }
           }
         ]
-      },
+      },*/
       
       {
         test: /\.js$/,

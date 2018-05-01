@@ -1,0 +1,16 @@
+#nav {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 1px black solid;
+    margin-bottom: 20px;
+}
+
+a, a:visited, a:active {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: underline;
+}
