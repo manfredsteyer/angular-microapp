@@ -1,27 +1,34 @@
-# Shell
+# Micro Apps with Web Components and Angular Elements
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0-rc.5.
+This example consists of three Angular projects that demonstrate how to use Web Components/ Angular Elements to implement a shell that loads micro apps:
 
-## Development server
+- **shell (/src):** Shell loading micro apps
+- **client-a (/projects/client-a)**: Demo micro app
+- **client-b (/projects/client-b)**: Another demo micro app
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Install Dependencies
 
-## Code scaffolding
+```
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Standalone
 
-## Build
+For debugging and testing, you can start each of those projects individually. Please note that the shell will throw some exceptions when doing so because it does not find the micro apps that are expected in an sub folder for the sake of simplicity.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Use one of the following commands for this:
 
-## Running unit tests
+```
+ng serve --project shell --open
+ng serve --project client-a --open
+ng serve --project client-b --open
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Everything together
 
-## Running end-to-end tests
+For using everything together, you have to build the example and run it:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+npm run build
+npm start
+```

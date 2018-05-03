@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
   template: `
     <div id="widget">
         <h1>Client-A Widget</h1>
-        <input [formControl]="control"> {{ value$ | async }}
+        <input [formControl]="control"> {{ value$ | push }}
+        <button (click)="clickMe()">Test</button>
     </div>
   `,
   styles: [`
@@ -23,6 +24,11 @@ export class ClientAWidgetComponent implements OnInit {
     value$: Observable<string>;
   
     ngOnInit(): void {
+      this.control.valueChanges.subscribe(x => console.debug(x));
       this.value$ = this.control.valueChanges;
+    }
+
+    clickMe(): void {
+      console.debug('ouch!');
     }
 }

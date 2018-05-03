@@ -1,12 +1,11 @@
-<div id="nav">
-  <a href="#/client-a/page1">Client A</a> |
-  <a href="#/client-b/page1">Client B</a> |
-  <a (click)="sendState()">Notify Clients</a>
+<div class="wrapper">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
+      <sidebar-cmp></sidebar-cmp>
+  </div>
+  <div class="main-panel">
+      <navbar-cmp></navbar-cmp>
+      <div id="content" class="content">
+        <!-- Web Components go here -->
+      </div>
+  </div>
 </div>
-
-
-<!--
-<div>
-    <client-a-widget></client-a-widget>
-</div>
--->

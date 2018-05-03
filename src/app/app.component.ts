@@ -17,11 +17,18 @@ export class AppComponent {
       loaded: false,
       path: 'client-a/main.bundle.js',
       element: 'client-a'
-    }
+    },
+    "client-b": {
+      loaded: false,
+      path: 'client-b/main.bundle.js',
+      element: 'client-b'
+    },
+    
   };
 
   ngOnInit() {
     this.load('client-a');
+    this.load('client-b');
   }
 
   load(name: string): void {
@@ -29,14 +36,16 @@ export class AppComponent {
     const configItem = this.config[name];
     if (configItem.loaded) return;
 
+    const content = document.getElementById('content');
+
     const script = document.createElement('script');
     script.src = configItem.path;
     script.onerror = () => console.error(`error loading ${configItem.path}`);
-    document.body.appendChild(script);
+    content.appendChild(script);
     
     const element: HTMLElement = document.createElement(configItem.element);
     element.addEventListener('message', msg => this.handleMessage(msg));
-    document.body.appendChild(element);
+    content.appendChild(element);
 
     this.clientA = element;
 
