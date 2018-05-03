@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
   styles: [`
         #widget { padding:10px; border: 2px darkred dashed }
   `],
-  encapsulation: ViewEncapsulation.Native
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class ClientAWidgetComponent implements OnInit {
     control = new FormControl();

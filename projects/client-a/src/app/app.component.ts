@@ -5,15 +5,9 @@ import { Router } from '@angular/router';
 @Component({
   // selector: 'client-a',
   template: `
-    <div id="client">
       <router-outlet></router-outlet>
-      <a (click)="sendMessage()">send</a>
-    </div>
   `,
-  styles: [`
-    #client { border: darkred dashed 5px; padding: 10px }
-  `],
-  encapsulation: ViewEncapsulation.Native
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class AppComponent implements OnInit {
 
@@ -24,15 +18,17 @@ export class AppComponent implements OnInit {
 
   @Output() message = new EventEmitter<any>();
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router) {
   }
 
   ngOnInit() {
     this.router.initialNavigation(); // Manually triggering initial navigation for @angular/elements ?
+    
+    // just for demonstration!
+    setTimeout(() => { 
+      this.message.next('client a initialized!');
+    }, 2000);
+    
   }
-
-  sendMessage(): void {
-    this.message.next(['message from client-a']);
-  }
-
 }

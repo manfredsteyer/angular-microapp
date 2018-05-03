@@ -10,13 +10,16 @@ import { RouterModule } from '@angular/router';
 import { EmptyComponent } from './empty/empty.component';
 import { ClientAWidgetComponent } from './client-a-widget/client-a-widget.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoreComponent } from './core/core.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      { path: 'client-a/page1', component: Page1Component },
-      { path: 'client-a/page2', component: Page2Component },
+      { path: 'client-a', component: CoreComponent, children: [
+        { path: 'page1', component: Page1Component },
+        { path: 'page2', component: Page2Component },
+      ]},
       { path: '**', component: EmptyComponent }
     ], { useHash: true }),
     ReactiveFormsModule
@@ -26,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     Page1Component,
     Page2Component,
     EmptyComponent,
-    ClientAWidgetComponent
+    ClientAWidgetComponent,
+    CoreComponent
 ],
   providers: [],
   bootstrap: [],
