@@ -170,6 +170,14 @@
             "scripts": []
           },
           "configurations": {
+            "debug": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/client-a/src/environments/environment.ts",
+                  "with": "projects/client-a/src/environments/environment.standalone.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {

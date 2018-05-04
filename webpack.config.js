@@ -1,6 +1,7 @@
 const AotPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 const path = require('path');
 const PurifyPlugin = require('@angular-devkit/build-optimizer').PurifyPlugin;
+const webpack = require('webpack');
 
 const clientA = {
   entry: './projects/client-a/src/main.ts',
@@ -40,6 +41,9 @@ const clientA = {
     new AotPlugin({
       skipCodeGeneration: false,
       tsConfigPath: './projects/client-a/tsconfig.app.json',
+      hostReplacementPaths: {
+        "./src/environments/environment.ts": "./src/environments/environment.prod.ts"
+      },
       entryModule: path.resolve(__dirname, './projects/client-a/src/app/app.module#AppModule' )
     }),
     
@@ -87,9 +91,12 @@ const clientB = {
     ]
   },
   plugins: [
-    
+
     new AotPlugin({
       skipCodeGeneration: false,
+      hostReplacementPaths: {
+        "./src/environments/environment.ts": "./src/environments/environment.prod.ts"
+      },
       tsConfigPath: './projects/client-b/tsconfig.app.json',
       entryModule: path.resolve(__dirname, './projects/client-b/src/app/app.module#AppModule' )
     }),
