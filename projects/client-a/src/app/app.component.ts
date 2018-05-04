@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   // selector: 'client-a',
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
     this.router.initialNavigation(); // Manually triggering initial navigation for @angular/elements ?
     
     // Standalone mode
-    if (!this.state) {
+    if (environment.standalone) {
       this.router.navigate(['/client-a/page1']);
     }
 

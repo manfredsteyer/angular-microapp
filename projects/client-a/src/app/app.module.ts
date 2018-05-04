@@ -53,6 +53,5 @@ export class AppModule {
 
     const widgetElement = createCustomElement(ClientAWidgetComponent, { injector: this.injector})
     customElements.define('client-a-widget', widgetElement);
-
   }
 }

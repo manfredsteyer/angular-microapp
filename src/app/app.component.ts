@@ -1,7 +1,7 @@
 import { element } from 'protractor';
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
-
+import { StateService } from './state.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,8 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent {
   
-  clientA: HTMLElement;
+  constructor(private stateService: StateService) {
+  }
 
   config = {
     "client-a": {
@@ -46,8 +47,9 @@ export class AppComponent {
     const element: HTMLElement = document.createElement(configItem.element);
     element.addEventListener('message', msg => this.handleMessage(msg));
     content.appendChild(element);
+    element.setAttribute('state', 'init');
 
-    this.clientA = element;
+    this.stateService.registerClient(element);
 
   }
 
@@ -55,8 +57,5 @@ export class AppComponent {
     console.debug('shell received message: ', msg.detail);
   }
 
-  sendState(): void {
-    this.clientA.setAttribute('state', 'message from shell');
-  }
 
 }
