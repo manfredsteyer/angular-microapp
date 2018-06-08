@@ -24,7 +24,7 @@ const clientA = {
           }
         ]
       },*/
-      
+
       {
         test: /\.js$/,
         loader: '@angular-devkit/build-optimizer/webpack-loader',
@@ -32,25 +32,60 @@ const clientA = {
           sourceMap: false
         }
       }
-      
+
     ]
   },
   plugins: [
-    
+
     new AotPlugin({
       skipCodeGeneration: false,
       tsConfigPath: './projects/client-a/tsconfig.app.json',
       entryModule: path.resolve(__dirname, './projects/client-a/src/app/app.module#AppModule' )
     }),
-    
+
     new PurifyPlugin()
-    
+
   ],
   output: {
     path: __dirname + '/dist/shell/client-a',
-    filename: 'main.bundle.js'
+    filename: 'main.bundle.js',
+    libraryTarget: 'umd',
+    library: 'client-a'
   },
-  mode: 'production'
+  /*
+  externals: {
+    "ng.core": "@angular/core",
+    "ng.common": "@angular/common",
+    "ng.router": "@angular/router",
+    "ng.forms": "@angular/forms",
+    "ng.elements": "@angular/elements",
+    "ng.platformBrowser": "@angular/platform-browser",
+    "rxjs": "rxjs"
+  },
+    --> results in angular framework to be included in the bundle. wrong syntax!
+  */
+  /*
+  externals: {
+    "@angular/core": "ng.core",
+    "@angular/common": "ng.common",
+    "@angular/router": "ng.router",
+    "@angular/forms": "ng.forms",
+    "@angular/elements": "ng.elements",
+    "@angular/platform-browser": "ng.platformBrowser",
+    "rxjs": "rxjs"
+  },    --> results in `require("ng.common")` and `root["ng.common"]`
+        --> it should be `require(@angular/common)`, mapped to `root.ng.common` (or `root["ng"]["common"]`)
+  */
+ externals: {
+  "@angular/core": { root: ["ng", "core"] },
+  "@angular/common": { root: ["ng", "common"] },
+  "@angular/router": { root: ["ng", "router"] },
+  "@angular/forms": { root: ["ng", "forms"] },
+  "@angular/elements": { root: ["ng", "elements"] },
+  "@angular/platform-browser": { root: ["ng", "platformBrowser"] },
+  "rxjs": { root: ["rxjs"] }
+  }, // --> ERROR in chunk main ...  Missing external configuration for type:commonjs2
+  mode: 'development'
 };
 
 const clientB = {
@@ -75,7 +110,7 @@ const clientB = {
           }
         ]
       },*/
-      
+
       {
         test: /\.js$/,
         loader: '@angular-devkit/build-optimizer/webpack-loader',
@@ -83,25 +118,25 @@ const clientB = {
           sourceMap: false
         }
       }
-      
+
     ]
   },
   plugins: [
-    
+
     new AotPlugin({
       skipCodeGeneration: false,
       tsConfigPath: './projects/client-b/tsconfig.app.json',
       entryModule: path.resolve(__dirname, './projects/client-b/src/app/app.module#AppModule' )
     }),
-    
+
     new PurifyPlugin()
-    
+
   ],
   output: {
     path: __dirname + '/dist/shell/client-b',
     filename: 'main.bundle.js'
   },
-  mode: 'production'
+  mode: 'development'
 };
 
 module.exports = [clientA, clientB];
