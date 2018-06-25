@@ -4,6 +4,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     NavbarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

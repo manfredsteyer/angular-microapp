@@ -1,61 +1,34 @@
-import { element } from 'protractor';
-import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
-import { StateService } from './state.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {NavigationStart, Router} from '@angular/router';
+import {LoadService} from './load.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  
-  constructor(private stateService: StateService) {
+export class AppComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+
+  constructor(private router: Router, private loadService: LoadService) {
   }
 
-  config = {
-    "client-a": {
-      loaded: false,
-      path: 'client-a/main.bundle.js',
-      element: 'client-a'
-    },
-    "client-b": {
-      loaded: false,
-      path: 'client-b/main.bundle.js',
-      element: 'client-b'
-    },
-    
-  };
-
-  ngOnInit() {
-    this.load('client-a');
-    this.load('client-b');
+  ngOnInit(): void {
+    this.subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        if (event.url.indexOf('client-a') >= 0) {
+          this.loadService.load('client-a');
+        }
+        if (event.url.indexOf('client-b') >= 0) {
+          this.loadService.load('client-b');
+        }
+      }
+    });
   }
 
-  load(name: string): void {
-
-    const configItem = this.config[name];
-    if (configItem.loaded) return;
-
-    const content = document.getElementById('content');
-
-    const script = document.createElement('script');
-    script.src = configItem.path;
-    script.onerror = () => console.error(`error loading ${configItem.path}`);
-    content.appendChild(script);
-    
-    const element: HTMLElement = document.createElement(configItem.element);
-    element.addEventListener('message', msg => this.handleMessage(msg));
-    content.appendChild(element);
-    element.setAttribute('state', 'init');
-
-    this.stateService.registerClient(element);
-
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
-
-  handleMessage(msg): void {
-    console.debug('shell received message: ', msg.detail);
-  }
-
 
 }
