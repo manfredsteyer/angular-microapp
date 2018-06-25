@@ -1,21 +1,28 @@
-import { environment } from './../environments/environment';
-import { Observable } from 'rxjs';
-import { Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import {environment} from './../environments/environment';
+import {Observable} from 'rxjs';
+import {Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit, OnChanges} from '@angular/core';
+import {Router} from '@angular/router';
 
 
 @Component({
   // selector: 'client-b',
   template: `
-      <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
   `,
   encapsulation: ViewEncapsulation.Emulated
 })
 export class AppComponent implements OnInit {
 
-  @Input('state') 
+  @Input('state')
   set state(state: string) {
-      console.debug('client-b received state', state);
+    console.debug('client-b received state', state);
+  }
+
+
+  @Input('url')
+  set url(url: string) {
+    console.debug('client-b received url', url);
+    this.router.navigateByUrl(url);
   }
 
   @Output() message = new EventEmitter<any>();
@@ -26,16 +33,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.router.initialNavigation(); // Manually triggering initial navigation for @angular/elements ?
-    
+
     // Standalone mode
     if (environment.standalone) {
       this.router.navigate(['/client-b/page1']);
     }
-    
+
     // just for demonstration!
-    setTimeout(() => { 
+    setTimeout(() => {
       this.message.next('client b initialized!');
     }, 2000);
-    
+
   }
 }

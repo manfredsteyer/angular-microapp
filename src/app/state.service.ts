@@ -1,22 +1,30 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class StateService {
 
-    constructor() { }
+  constructor() {
+  }
 
-    private state$ = new Subject();
-    private clients: HTMLElement[] = [];
+  private state$ = new Subject();
+  private clients: HTMLElement[] = [];
 
-    public registerClient(client: HTMLElement) {
-        this.clients.push(client);
+  public registerClient(client: HTMLElement) {
+    this.clients.push(client);
+  }
+
+  public setState(state: string) {
+    this.setAttr('state', state);
+  }
+
+  public setUrl(url: string) {
+    this.setAttr('url', url);
+  }
+
+  private setAttr(attrName: string, attrValue: string) {
+    for (const client of this.clients) {
+      client.setAttribute(attrName, attrValue);
     }
-
-    public setState(state: string) {
-        for(let client of this.clients) {
-            client.setAttribute('state', state);
-        }
-    }
-
+  }
 }

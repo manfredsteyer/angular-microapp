@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "live-server dist/shell",
+    "start": "live-server dist/shell --entry-file=index.html",
     "build": "npm run build:shell && npm run build:client-a ",
     "test": "ng test",
     "lint": "ng lint",

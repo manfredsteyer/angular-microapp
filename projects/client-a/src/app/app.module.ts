@@ -22,7 +22,7 @@ import { PushPipe } from './push.pipe';
         { path: 'page2', component: Page2Component },
       ]},
       { path: '**', component: EmptyComponent }
-    ], { useHash: true }),
+    ], { useHash: false }),
     ReactiveFormsModule
   ],
   declarations: [
@@ -42,7 +42,7 @@ import { PushPipe } from './push.pipe';
     ClientAWidgetComponent
   ]
 })
-export class AppModule { 
+export class AppModule {
 
   constructor(private injector: Injector) {
   }
