@@ -20,7 +20,7 @@ import { CoreComponent } from './core/core.component';
         { path: 'page2', component: Page2Component },
       ]},
       { path: '**', component: EmptyComponent }
-    ], { useHash: true }),
+    ], { useHash: false }),
     ReactiveFormsModule
   ],
   declarations: [
@@ -37,7 +37,7 @@ import { CoreComponent } from './core/core.component';
     AppComponent
   ]
 })
-export class AppModule { 
+export class AppModule {
   constructor(private injector: Injector) {
   }
 

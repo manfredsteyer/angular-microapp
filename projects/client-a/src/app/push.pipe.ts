@@ -13,7 +13,7 @@ import { Subscription} from 'rxjs';
 @Pipe({ name: 'push', pure: false })
 export class PushPipe implements PipeTransform, OnDestroy {
   constructor(private cdr: ChangeDetectorRef) {
-    NgZone.assertNotInAngularZone();
+    // NgZone.assertNotInAngularZone();
   }
 
   private obs: Observable<any>;

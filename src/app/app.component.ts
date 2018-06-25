@@ -1,7 +1,4 @@
-import { element } from 'protractor';
-import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
-import { StateService } from './state.service';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,53 +6,7 @@ import { StateService } from './state.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
-  constructor(private stateService: StateService) {
+
+  constructor() {
   }
-
-  config = {
-    "client-a": {
-      loaded: false,
-      path: 'client-a/main.bundle.js',
-      element: 'client-a'
-    },
-    "client-b": {
-      loaded: false,
-      path: 'client-b/main.bundle.js',
-      element: 'client-b'
-    },
-    
-  };
-
-  ngOnInit() {
-    this.load('client-a');
-    this.load('client-b');
-  }
-
-  load(name: string): void {
-
-    const configItem = this.config[name];
-    if (configItem.loaded) return;
-
-    const content = document.getElementById('content');
-
-    const script = document.createElement('script');
-    script.src = configItem.path;
-    script.onerror = () => console.error(`error loading ${configItem.path}`);
-    content.appendChild(script);
-    
-    const element: HTMLElement = document.createElement(configItem.element);
-    element.addEventListener('message', msg => this.handleMessage(msg));
-    content.appendChild(element);
-    element.setAttribute('state', 'init');
-
-    this.stateService.registerClient(element);
-
-  }
-
-  handleMessage(msg): void {
-    console.debug('shell received message: ', msg.detail);
-  }
-
-
 }
