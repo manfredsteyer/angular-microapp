@@ -10,7 +10,7 @@ const clientA = {
   module: {
     rules: [
       { test: /\.ts$/, loaders: ['@ngtools/webpack'] },
-      { test: /\.html$/, loader: 'html-loader',  options: { minimize: true } },
+      { test: /\.html$/, loader: 'html-loader',  options: { minimize: false } },
       /*{
         test: /\.css$/,
         "use": [
