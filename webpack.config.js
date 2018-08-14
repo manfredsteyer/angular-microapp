@@ -1,6 +1,10 @@
 const AotPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
-const path = require('path');
+      // TypeScript-Kompilierung + AOT
+
 const PurifyPlugin = require('@angular-devkit/build-optimizer').PurifyPlugin;
+      // Build Optimizer
+
+const path = require('path');
 const webpack = require('webpack');
 
 const clientA = {

@@ -39,15 +39,41 @@ export class AppComponent {
 
     const content = document.getElementById('content');
 
+
+
+
+
+
+
+
+
+
+
+
     const script = document.createElement('script');
     script.src = configItem.path;
-    script.onerror = () => console.error(`error loading ${configItem.path}`);
     content.appendChild(script);
     
     const element: HTMLElement = document.createElement(configItem.element);
-    element.addEventListener('message', msg => this.handleMessage(msg));
     content.appendChild(element);
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    element.addEventListener('message', msg => this.handleMessage(msg));
     element.setAttribute('state', 'init');
+
+    script.onerror = () => console.error(`error loading ${configItem.path}`);
+
 
     this.stateService.registerClient(element);
 
@@ -56,6 +82,5 @@ export class AppComponent {
   handleMessage(msg): void {
     console.debug('shell received message: ', msg.detail);
   }
-
 
 }

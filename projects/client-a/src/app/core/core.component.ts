@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   template: `
     <div id="client-a">
-      <div>
-        <a routerLink="page1">Page 1</a> | <a routerLink="page2">Page 2</a>
+      <div class="card">
+        <div class="content">
+          <a routerLink="page1">Flight Search</a> | <a routerLink="page2">Advanced</a>
+        </div>
       </div>
       <router-outlet></router-outlet>
     </div>
