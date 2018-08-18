@@ -9,22 +9,22 @@ import { StateService } from './state.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+
   constructor(private stateService: StateService) {
   }
 
   config = {
     "client-a": {
       loaded: false,
-      path: 'client-a/main.bundle.js',
+      path: 'client-a/main.js',
       element: 'client-a'
     },
     "client-b": {
       loaded: false,
-      path: 'client-b/main.bundle.js',
+      path: 'client-b/main.js',
       element: 'client-b'
     },
-    
+
   };
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class AppComponent {
     const script = document.createElement('script');
     script.src = configItem.path;
     content.appendChild(script);
-    
+
     const element: HTMLElement = document.createElement(configItem.element);
     content.appendChild(element);
 
@@ -64,7 +64,7 @@ export class AppComponent {
 
 
 
-    
+
 
 
 
