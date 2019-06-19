@@ -35,10 +35,9 @@ import { PushPipe } from './push.pipe';
     PushPipe
   ],
   providers: [],
-  bootstrap: [],
+  bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [
-    AppComponent,
     ClientAWidgetComponent
   ]
 })
@@ -48,8 +47,8 @@ export class AppModule {
   }
 
   ngDoBootstrap() {
-    const appElement = createCustomElement(AppComponent, { injector: this.injector})
-    customElements.define('client-a', appElement);
+    // const appElement = createCustomElement(AppComponent, { injector: this.injector})
+    // customElements.define('client-a', appElement);
 
     const widgetElement = createCustomElement(ClientAWidgetComponent, { injector: this.injector})
     customElements.define('client-a-widget', widgetElement);

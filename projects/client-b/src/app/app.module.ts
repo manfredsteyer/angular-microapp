@@ -32,17 +32,14 @@ import { CoreComponent } from './core/core.component';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [],
+  bootstrap: [AppComponent],
   entryComponents: [
-    AppComponent
+    
   ]
 })
 export class AppModule { 
   constructor(private injector: Injector) {
   }
 
-  ngDoBootstrap() {
-    const appElement = createCustomElement(AppComponent, { injector: this.injector})
-    customElements.define('client-b', appElement);
-  }
+
 }

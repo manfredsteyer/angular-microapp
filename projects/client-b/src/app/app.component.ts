@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  // selector: 'client-b',
+  selector: 'client-b',
   template: `
       <router-outlet></router-outlet>
   `,
@@ -13,29 +13,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  @Input('state') 
-  set state(state: string) {
-      console.debug('client-b received state', state);
-  }
-
-  @Output() message = new EventEmitter<any>();
 
   constructor(
     private router: Router) {
   }
 
   ngOnInit() {
-    this.router.initialNavigation(); // Manually triggering initial navigation for @angular/elements ?
-    
-    // Standalone mode
-    if (environment.standalone) {
-      this.router.navigate(['/client-b/page1']);
-    }
-    
-    // just for demonstration!
-    setTimeout(() => { 
-      this.message.next('client b initialized!');
-    }, 2000);
-    
+
   }
 }
