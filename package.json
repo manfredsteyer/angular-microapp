@@ -12,7 +12,13 @@
     "build:shell": "ng build --project shell",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "npx-build-plus:copy-assets": "node copy-bundles.js && node projects/client-a/copy-bundles.js && node projects/client-b/copy-bundles.js && node copy-wc-polyfill.js",
+    "build:externals": "ng build --extra-webpack-config webpack.externals.js --prod ",
+    "build:shell:externals": "ng build --extra-webpack-config webpack.externals.js --prod --project shell ",
+    "build:client-a:externals": "ng build --extra-webpack-config webpack.externals.js --prod --project client-a --single-bundle --output-hashing none --output-path dist/shell/client-a",
+    "build:client-b:externals": "ng build --extra-webpack-config webpack.externals.js --prod --project client-b --single-bundle --output-hashing none --output-path dist/shell/client-b",
+    "build:all:externals": "npm run build:shell:externals && npm run build:client-a:externals && npm run build:client-b:externals"
   },
   "private": true,
   "dependencies": {
@@ -26,7 +32,9 @@
     "@angular/platform-browser-dynamic": "~8.0.1",
     "@angular/router": "~8.0.1",
     "@webcomponents/custom-elements": "^1.1.0",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
     "bootstrap": "^3.3.7",
+    "copy": "^0.3.2",
     "core-js": "^2.5.4",
     "ngx-build-plus": "^8.0.3",
     "rxjs": "6.5.2",
