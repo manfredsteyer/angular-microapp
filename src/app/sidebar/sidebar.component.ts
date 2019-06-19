@@ -8,10 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class SidebarComponent {
-    constructor(private stateService: StateService) {
-    }
-
-    sendState() {
-        this.stateService.setState('Info from Shell');
-    }
+   
+   
 }
