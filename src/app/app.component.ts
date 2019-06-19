@@ -16,12 +16,12 @@ export class AppComponent {
   config = {
     "client-a": {
       loaded: false,
-      path: 'client-a/main.bundle.js',
+      path: 'client-a/main.js',
       element: 'client-a'
     },
     "client-b": {
       loaded: false,
-      path: 'client-b/main.bundle.js',
+      path: 'client-b/main.js',
       element: 'client-b'
     },
     
