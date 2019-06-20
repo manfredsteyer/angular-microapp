@@ -7,12 +7,13 @@
     "start": "live-server dist/shell",
     "build": "npm run build:shell && npm run build:clients",
     "build:clients": "npm run build:client-a && npm run build:client-b",
-    "build:client-a": "ng build --prod --single-bundle --project client-a --output-hashing none --vendor-chunk false --output-path dist/shell/client-a",
-    "build:client-b": "ng build --prod --single-bundle --project client-b --output-hashing none --vendor-chunk false --output-path dist/shell/client-b",
+    "build:client-a": "ng build --prod --single-bundle --project client-a --output-hashing none --vendor-chunk false --output-path src/assets/micro-frontends/client-a",
+    "build:client-b": "ng build --prod --single-bundle --project client-b --output-hashing none --vendor-chunk false --output-path src/assets/micro-frontends/client-b",
     "build:shell": "ng build --project shell",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "npx-build-plus:copy-assets": "node copy-wc-polyfill.js"
   },
   "private": true,
   "dependencies": {
@@ -26,7 +27,9 @@
     "@angular/platform-browser-dynamic": "~8.0.1",
     "@angular/router": "~8.0.1",
     "@webcomponents/custom-elements": "^1.1.0",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
     "bootstrap": "^3.3.7",
+    "copy": "^0.3.2",
     "core-js": "^2.5.4",
     "ngx-build-plus": "^8.0.3",
     "rxjs": "6.5.2",

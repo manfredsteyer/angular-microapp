@@ -34,10 +34,7 @@
               "src/assets/css/paper-dashboard.css",
               "src/assets/css/demo.css",
               "src/assets/css/themify-icons.css"
-            ],
-            "scripts": [
-              "node_modules/@webcomponents/custom-elements/src/native-shim.js"
-            ]
+            ] 
           },
           "configurations": {
             "production": {

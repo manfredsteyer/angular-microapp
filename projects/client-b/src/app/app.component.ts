@@ -5,37 +5,20 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  // selector: 'client-b',
+  selector: 'client-b',
   template: `
-      <router-outlet></router-outlet>
-  `,
-  encapsulation: ViewEncapsulation.Emulated
+  <div id="client-b">
+    <div class="card">
+      <div class="content">
+        <a routerLink="client-b/page1">Passenger Search</a> | <a routerLink="client-b/page2">Details</a>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+`,
+styles: [`
+  #client-b { border: navy dashed 5px; padding: 10px }
+`],
 })
-export class AppComponent implements OnInit {
-
-  @Input('state') 
-  set state(state: string) {
-      console.debug('client-b received state', state);
-  }
-
-  @Output() message = new EventEmitter<any>();
-
-  constructor(
-    private router: Router) {
-  }
-
-  ngOnInit() {
-    this.router.initialNavigation(); // Manually triggering initial navigation for @angular/elements ?
-    
-    // Standalone mode
-    if (environment.standalone) {
-      this.router.navigate(['/client-b/page1']);
-    }
-    
-    // just for demonstration!
-    setTimeout(() => { 
-      this.message.next('client b initialized!');
-    }, 2000);
-    
-  }
+export class AppComponent {
 }
