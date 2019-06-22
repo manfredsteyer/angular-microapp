@@ -31,7 +31,7 @@
     "bootstrap": "^3.3.7",
     "copy": "^0.3.2",
     "core-js": "^2.5.4",
-    "ngx-build-plus": "^8.0.3",
+    "ngx-build-plus": "^8.1.0",
     "rxjs": "6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
