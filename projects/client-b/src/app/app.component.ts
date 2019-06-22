@@ -1,8 +1,5 @@
-import { environment } from './../environments/environment';
-import { Observable } from 'rxjs';
-import { Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'client-b',
@@ -10,7 +7,7 @@ import { Router } from '@angular/router';
   <div id="client-b">
     <div class="card">
       <div class="content">
-        <a routerLink="client-b/page1">Passenger Search</a> | <a routerLink="client-b/page2">Details</a>
+        <a routerLink="client-b/page1" queryParamsHandling="merge">Passenger Search</a> | <a routerLink="client-b/page2" queryParamsHandling="merge">Details</a>
       </div>
     </div>
     <router-outlet></router-outlet>
@@ -21,4 +18,11 @@ styles: [`
 `],
 })
 export class AppComponent {
+  constructor(private route: ActivatedRoute) {
+    route.queryParams.subscribe(params => {
+      console.debug('params', params);
+    });
+
+    window.addEventListener('client-message', e => console.debug('client-message event', e));
+  }
 }

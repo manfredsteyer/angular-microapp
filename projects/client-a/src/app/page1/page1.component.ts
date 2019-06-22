@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   template: `
@@ -22,7 +23,7 @@ import { FormControl } from '@angular/forms';
   
       <div class="form-group">
           <button 
-              class="btn btn-default">Search</button>
+              class="btn btn-default" (click)="search()">Search</button>
   
           </div>
   
@@ -32,7 +33,16 @@ import { FormControl } from '@angular/forms';
 })
 export class Page1Component  {
 
-  control = new FormControl();
+    constructor(private router: Router) {
+
+    }
+    
+    control = new FormControl();
+
+    search() {
+        this.router.navigate(['.'], { queryParamsHandling: 'merge', queryParams: { id: 17 }});
+        window.dispatchEvent(new CustomEvent('client-message', { detail: 17 }));
+    }
 
   
 }

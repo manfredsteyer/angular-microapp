@@ -16,13 +16,13 @@ import { EmptyComponent } from './empty/empty.component';
    ],
    imports: [
       BrowserModule,
-      RouterModule.forRoot([
-        { path: '', pathMatch: 'full', redirectTo: 'home'},
-        {
-          path: 'home',
-          component: EmptyComponent
-        }
-      ], { useHash: true })
+      // RouterModule.forRoot([
+      //   { path: '', pathMatch: 'full', redirectTo: 'home'},
+      //   {
+      //     path: '**',
+      //     component: EmptyComponent
+      //   }
+      // ], { useHash: true })
    ],
    schemas: [
       CUSTOM_ELEMENTS_SCHEMA

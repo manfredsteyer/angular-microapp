@@ -1,7 +1,4 @@
-import { Observable } from 'rxjs';
-import { Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from '../environments/environment';
+import { Component, OnInit, } from '@angular/core';
 
 @Component({
   selector: 'client-a',
@@ -9,7 +6,7 @@ import { environment } from '../environments/environment';
     <div id="client-a">
       <div class="card">
         <div class="content">
-          <a routerLink="client-a/page1">Flight Search</a> | <a routerLink="client-a/page2">Advanced</a>
+          <a routerLink="client-a/page1" queryParamsHandling="merge">Flight Search</a> | <a routerLink="client-a/page2" queryParamsHandling="merge">Advanced</a>
         </div>
       </div>
       <router-outlet></router-outlet>

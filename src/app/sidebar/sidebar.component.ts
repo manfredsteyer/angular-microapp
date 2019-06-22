@@ -1,5 +1,5 @@
-import { StateService } from './../state.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ShellService } from '../shell/shell.service';
 
 
 @Component({
@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class SidebarComponent {
-    constructor(private stateService: StateService) {
+    constructor(private shellService: ShellService) {
     }
 
-    sendState() {
-        this.stateService.setState('Info from Shell');
+    navigate(url: string) {
+        this.shellService.navigate(url);
     }
 }
