@@ -10,7 +10,7 @@
     </div>
     <ul class="nav">
         <li>
-            <a href="#">
+            <a href="#/home">
                 <i class="ti-home"></i>
                 <p>Home</p>
             </a>
@@ -31,7 +31,19 @@
             </a>
         </li>
 
-       
+        <li>
+            <a (click)="navigate('/client-c')">
+                <i class="ti-user"></i>
+                <p>Bookings</p>
+            </a>
+        </li>
+
+        <li>
+            <a (click)="navigate('/client-d/payment')">
+                <i class="ti-user"></i>
+                <p>Payment</p>
+            </a>
+        </li>
 
         <!--
             <li routerLinkActive="active">

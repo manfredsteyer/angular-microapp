@@ -1,7 +1,7 @@
 
 export interface ClientConfig {
     loaded: boolean;
-    src: string;
+    src: string | string[];
     element: string;
     route: string;
 }
@@ -13,5 +13,6 @@ export interface ClientConfigs {
 export interface ShellConfig {
     outletId?: string;
     initialRoute: string;
+    preload: boolean;
     clients: ClientConfigs;
 }

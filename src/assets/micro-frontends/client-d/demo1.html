@@ -1,0 +1,17 @@
+<meta charset="utf-8">
+<title>flight demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="./flight.js"></script>
+
+
+<flight-booking id="fb" app-state='{ "flight": { "id": 1},"passenger": { "id": 2} }'></flight-booking>
+
+<flight-basket products='[{ "from": "a", "to": "b" }]'></flight-basket>
+
+<script>
+
+var fb = document.getElementById("fb");
+console.debug('fb', fb);
+window.fb = fb;
+
+</script>

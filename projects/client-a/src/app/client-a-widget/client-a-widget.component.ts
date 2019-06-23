@@ -1,8 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ViewEncapsulation, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,7 +12,7 @@ import { Observable } from 'rxjs';
       <h1>Your Flights</h1>
     </div>
     <div class="content">
-  <table class="table table-contensed">
+  <table class="table table-contensed table-striped">
       <thead>
       <tr>
           <th>Id</th>

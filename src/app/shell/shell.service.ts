@@ -16,6 +16,10 @@ export class ShellService {
       location.hash = config.initialRoute;
     }
     window.addEventListener("hashchange", () => this.urlChanged());
+    setTimeout(() => this.urlChanged(), 0);
+    if (config.preload) {
+      this.preloadClients();
+    }
   }
 
   urlChanged() {
@@ -24,10 +28,14 @@ export class ShellService {
       const route = '#' + entry.route;
       if (location.hash.startsWith(route)) {
         // Lazy load module if still not loaded
-        this.load(client);
-        this.showClient(client);
+        if (!entry.loaded) {
+          this.load(client);
+        }
+        else {
+          this.showClient(client);
+        }
       }
-      else {
+      else if (entry.loaded) {
         this.hideClient(client);
       }
     }
@@ -72,15 +80,20 @@ export class ShellService {
 
     const content = document.getElementById(this.config.outletId || 'content');
 
-    // Add script-tag to load bundle
-    const script = document.createElement('script');
-    script.src = configItem.src;
-    content.appendChild(script);
-    
     // Add tag for micro frontend, e. g. <client-a></client-a>
     const element = document.createElement(configItem.element);
     element['hidden'] = !location.hash.startsWith('#' + configItem.route);
     content.appendChild(element);
+
+    // Add script-tag(s) to load bundle
+    const files = typeof configItem.src === 'string' ? [configItem.src] : configItem.src;
+
+    files.forEach(src => {
+      const script = document.createElement('script');
+      script.src = src;
+      content.appendChild(script);
+    });
+
   }
 
   preloadClients() {
